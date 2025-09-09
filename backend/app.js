@@ -9,9 +9,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 app.use(cors());
 mongoose
-  .connect(process.env.DB_STRING)
+  .connect("mongodb://127.0.0.1:27017/online-shop",)
   .then(() => {
-    console.log("Successfully Connect DB ");
+    console.log("Successfully Connect DB..");
   })
   .catch((error) => {
     console.log(error);

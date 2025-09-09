@@ -26,6 +26,7 @@ const AddProductadmin = () => {
   const [isSize, setIssize] = useState([]);
   const [isBestseller, setIsbestseller] = useState(false);
   const [image, setImage] = useState("");
+  const [category, setCategory] = useState("");
 
   function handleChange(e) {
     let value = e.target.value;
@@ -49,15 +50,15 @@ const AddProductadmin = () => {
       formData.append("Size", value);
     });
     formData.append("BestSeller", JSON.stringify(isBestseller));
+    formData.append("PStatus", "In-Stock"); // default
+    formData.append("Category", category);
     formData.append("image", image);
 
     fetch("/api/adminproductdata", {
       method: "POST",
       body: formData,
     })
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((result) => {
         if (result.message === "Successfully Insert Product 😍") {
           navigate("/adminproduct");
@@ -72,117 +73,83 @@ const AddProductadmin = () => {
     <div>
       <div className="flex flex-col items-center justify-center gap-3 w-auto mt-5">
         <Left />
-        {/* Right */}
         <div className="w-11/12 ">
           <h1 className=" text-center text-4xl font-bold text-sky-600 my-4">
             Add Products ✔️
           </h1>
-          <form
-            onSubmit={handleForm}
-            method="post"
-            encType="multipart/form-data"
-          >
+          <form onSubmit={handleForm} encType="multipart/form-data">
             <TextField
               fullWidth
               required
               label="ProductName"
-              id="fullWidth"
               sx={{ marginBottom: "10px" }}
               value={productName}
-              onChange={(e) => {
-                setProductName(e.target.value);
-              }}
+              onChange={(e) => setProductName(e.target.value)}
             />
             <TextField
               fullWidth
               required
               label="ProductDescription"
-              id="fullWidth"
               multiline
               rows={4}
               sx={{ marginBottom: "10px" }}
               value={productDesc}
-              onChange={(e) => {
-                setProductDesc(e.target.value);
-              }}
+              onChange={(e) => setProductDesc(e.target.value)}
             />
 
             <FormControl fullWidth sx={{ marginBottom: "10px" }}>
-              <InputLabel htmlFor="outlined-adornment-amount">
-                Amount
-              </InputLabel>
+              <InputLabel>Amount</InputLabel>
               <OutlinedInput
-                id="outlined-adornment-amount"
-                startAdornment={
-                  <InputAdornment position="start">₹</InputAdornment>
-                }
+                startAdornment={<InputAdornment position="start">₹</InputAdornment>}
                 label="Amount"
                 value={productPrice}
-                onChange={(e) => {
-                  setProductPrice(e.target.value);
-                }}
+                onChange={(e) => setProductPrice(e.target.value)}
               />
             </FormControl>
 
             <TextField
               fullWidth
               label="Rating"
-              id="fullWidth"
               sx={{ marginBottom: "10px" }}
               value={productRating}
-              onChange={(e) => {
-                setProductRating(e.target.value);
-              }}
+              onChange={(e) => setProductRating(e.target.value)}
             />
 
-            <label htmlFor="">Product Image</label>
+            <label>Product Image</label>
             <input
               type="file"
               name="image"
-              id=""
-              className="w-full my-4 "
-              onChange={(e) => {
-                setImage(e.target.files[0]);
-              }}
+              className="w-full my-4"
+              onChange={(e) => setImage(e.target.files[0])}
             />
+
+            {/* Category */}
+            <select
+              required
+              className="w-full border mb-4 border-black rounded-sm p-2"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="">--Select Category--</option>
+              <option value="Men">Men</option>
+              <option value="Women">Women</option>
+              <option value="Kids">Kids</option>
+            </select>
 
             {/* Size Options */}
             <div className="mb-4">
               <h3 className="font-semibold mb-2">Select Size:</h3>
-              <div className="flex gap-2">
-                <FormGroup sx={{ display: "flex", flexDirection: "row" }}>
+              <FormGroup sx={{ display: "flex", flexDirection: "row" }}>
+                {["S", "M", "L", "XL", "XXL"].map((size) => (
                   <FormControlLabel
+                    key={size}
                     control={<Checkbox />}
-                    label="S"
-                    value={"S"}
+                    label={size}
+                    value={size}
                     onChange={handleChange}
                   />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="M"
-                    value={"M"}
-                    onChange={handleChange}
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="L"
-                    value={"L"}
-                    onChange={handleChange}
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="XL"
-                    value={"XL"}
-                    onChange={handleChange}
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="XXL"
-                    value={"XXL"}
-                    onChange={handleChange}
-                  />
-                </FormGroup>
-              </div>
+                ))}
+              </FormGroup>
             </div>
 
             <FormControlLabel
@@ -191,9 +158,7 @@ const AddProductadmin = () => {
                   icon={<FavoriteBorder />}
                   checkedIcon={<Favorite color="error" />}
                   checked={isBestseller}
-                  onChange={(e) => {
-                    setIsbestseller(e.target.checked);
-                  }}
+                  onChange={(e) => setIsbestseller(e.target.checked)}
                 />
               }
               label="BestSeller"
