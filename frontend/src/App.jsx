@@ -15,6 +15,9 @@ import SingleCollection from "./pages/SingleCollection";
 import AdminQueryReply from "./Admin/AdminQueryReply";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
+import AboutUs from "./pages/AboutUs";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+
 
 const App = () => {
   return (
@@ -38,6 +41,8 @@ const App = () => {
           />
           <Route path="/adminqueryreply/:id" element={<AdminQueryReply />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicyPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

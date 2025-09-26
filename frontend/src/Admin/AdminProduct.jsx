@@ -8,20 +8,24 @@ const AdminProduct = () => {
 
   useEffect(() => {
     fetch("/api/adminallproducts")
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json();
+      })
       .then((result) => {
         setProducts(result);
+        console.log(result);
       });
-  }, []);
+  }, [products]);
 
   function handleDelete(id) {
     fetch(`/api/adminproductdelete/${id}`, {
       method: "DELETE",
     })
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json();
+      })
       .then((result) => {
         console.log(result);
-        setProducts((prev) => prev.filter((item) => item._id !== id));
       });
   }
 
@@ -51,29 +55,44 @@ const AdminProduct = () => {
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
-                    <th className="px-6 py-3">Product Image</th>
-                    <th className="px-6 py-3">Product Name</th>
-                    <th className="px-6 py-3">Product Desc</th>
-                    <th className="px-6 py-3">Price</th>
-                    <th className="px-6 py-3">Rating</th>
-                    <th className="px-6 py-3">Status</th>
-                    <th className="px-6 py-3">BestSeller</th>
-                    <th className="px-6 py-3">Category</th>
-                    <th className="px-6 py-3">Update</th>
-                    <th className="px-6 py-3">Delete</th>
+                    <th scope="col" className="px-6 py-3">
+                      Product Image
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Product Name
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Product Desc
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Product Price
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Product Rating
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Product Status
+                    </th>
+
+                    <th scope="col" className="px-6 py-3">
+                      BestSeller
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Action-1
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Action-2
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {products.map((item) => (
-                    <tr
-                      key={item._id}
-                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
-                    >
+                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                       <td className="p-4">
                         <img
                           src={`/uploads/${item.ProductImage}`}
                           className="w-16 md:w-32 max-w-full max-h-full"
-                          alt={item.ProductName}
+                          alt="Apple Watch"
                         />
                       </td>
                       <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
@@ -82,25 +101,32 @@ const AdminProduct = () => {
                       <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                         {item.ProductDescription}
                       </td>
-                      <td className="px-6 py-4">{item.ProductPrice} ₹</td>
-                      <td className="px-6 py-4">{item.ProductRating}</td>
-                      <td className="px-6 py-4">{item.ProductStatus}</td>
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                        {item.ProductPrice} ₹
+                      </td>
+                      <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                        {item.ProductRating}
+                      </td>
+                      <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                        {item.ProductStatus}
+                      </td>
+                      <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                         {item.ProductBestSeller ? "Yes" : "No"}
                       </td>
-                      <td className="px-6 py-4">{item.ProductCategory}</td>
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                         <Link to={`/adminproductupdate/${item._id}`}>
                           <Button variant="contained" color="success">
                             Update
                           </Button>
                         </Link>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                         <Button
                           variant="contained"
                           color="error"
-                          onClick={() => handleDelete(item._id)}
+                          onClick={() => {
+                            handleDelete(item._id);
+                          }}
                         >
                           Delete
                         </Button>

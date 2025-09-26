@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -16,6 +19,7 @@
     "@mui/material": "^7.0.2",
     "@mui/styled-engine-sc": "^7.0.2",
     "@reduxjs/toolkit": "^2.8.2",
+    "lucide-react": "^0.543.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hot-toast": "^2.5.2",

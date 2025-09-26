@@ -22,6 +22,7 @@ import { useSelector } from "react-redux";
 const pages = [
   { title: "Home", url: "/home" },
   { title: "Collections", url: "/collection" },
+  { title: "About Us", url: "/aboutus" },
 ];
 const settings = [{ title: "Profile", url: "/profile" }];
 

@@ -9,7 +9,6 @@ const Latest = () => {
     fetch("/api/latestcollection")
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         setLatest(result.data);
       });
   }, []);
