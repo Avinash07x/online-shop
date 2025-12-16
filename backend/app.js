@@ -9,6 +9,8 @@ dotenv.config();
 
 const app = express();
 const apiRouter = require("./router/api");
+const { act } = require("react");
+const { error } = require("console");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -23,7 +25,13 @@ mongoose
 // Routes
 app.use("/api", apiRouter);
 app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
-app.get("/", (req, res) => res.send("Hello World!"));
+app.get("/", (req, res) => {
+  res.send({
+    active: "true",
+    message: "Server is running",
+    error: "false",
+  });
+});
 
 // Server
 const PORT = process.env.PORT || 5000;
