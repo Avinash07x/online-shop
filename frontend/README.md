@@ -1,12 +1,34 @@
-# React + Vite
+# 🚀 Personal Portfolio - Avinash Sharma
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+यह मेरा पर्सनल पोर्टफोलियो प्रोजेक्ट है जो **React + Vite + Tailwind CSS** से बनाया गया है।  
+इसमें मेरी स्किल्स, प्रोजेक्ट्स और कॉन्टैक्ट डिटेल्स शामिल हैं।  
 
-Currently, two official plugins are available:
+## ✨ Features
+- Modern UI with React + Tailwind CSS  
+- Responsive design (Mobile, Tablet, Desktop)  
+- Smooth navigation using React Router  
+- Projects showcase with GitHub & Live Demo links  
+- Contact form and social media integration  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tech Stack
+- **Frontend:** React.js, Vite, Tailwind CSS  
+- **Routing:** React Router  
+- **Icons:** Lucide-react  
+- **Deployment:** Vercel  
 
-## Expanding the ESLint configuration
+## 📸 Screenshots
+*(यहाँ बाद में स्क्रीनशॉट्स डाल सकते हो)*  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📂 How to Run Locally
+```bash
+# Clone the repo
+git clone https://github.com/Avinash07x/Avinash.git
+
+# Go to project folder
+cd Avinash
+
+# Install dependencies
+npm install
+
+# Run the project
+npm run dev
