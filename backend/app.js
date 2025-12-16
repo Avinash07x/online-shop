@@ -23,6 +23,7 @@ mongoose
 // Routes
 app.use("/api", apiRouter);
 app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
+app.get("/", (req, res) => res.send("Hello World!"));
 
 // Server
 const PORT = process.env.PORT || 5000;
